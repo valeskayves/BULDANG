@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      {{ welcomeMessage }}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">3rd Year Student List</ion-title>
+    </ion-toolbar>
+  </ion-header>
+    
+  <ion-button color="dark" expand="block" (click)="showsStudentList = !showsStudentList">
+    {{ showsStudentList ? 'Hide' : 'Show' }} Student List
+  </ion-button>
+
+  @if (showsStudentList) {
+    <ion-grid>
+      <ion-row>
+        @for (student of students; track student.id) {
+          <div style="flex: 0 0 100%; max-width: 100%;">
+            <ion-card color="Secondary">
+              <div>
+                <ion-card-title>{{ student.name }}</ion-card-title>
+              </div>
+              <ion-card-content>
+                <p><strong>ID:</strong> {{ student.id }}</p>
+                <p><strong>Gender:</strong> {{ student.gender }}</p>
+                <p><strong>Course:</strong> {{ student.course }}</p>
+                <p><strong>Year:</strong> {{ student.year }}</p>
+              </ion-card-content>
+            </ion-card>
+          </div>
+        }
+      </ion-row>
+    </ion-grid>
+  }
+  @else {
+    <ion-card>
+      <ion-card-content>
+        <p>Click the button above to show the student list.</p>
+      </ion-card-content>
+    </ion-card>
+  }
+</ion-content>
